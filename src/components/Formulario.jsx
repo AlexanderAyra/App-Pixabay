@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import Error from './Error'
 
-const Formulario = () => {
+const Formulario = ({ setBusqueda }) => {
 
     const [termino, setTermino] = useState('')
     const [error, setError] = useState(false)
@@ -15,6 +15,8 @@ const Formulario = () => {
         }
 
         setError(false)
+
+        setBusqueda(termino)
 
 
     }
