@@ -7,7 +7,7 @@ const App = () => {
   const [busqueda, setBusqueda] = useState('')
   const [imagenes, setImagenes] = useState([])
   const [paginaactual, setPaginaActual] = useState(1)
-  const [totalpaginas, setTotalPaginas] = useState(1)
+  const [totalpaginas, setTotalPaginas] = useState(6)
 
   useEffect(() => {
     
@@ -31,6 +31,18 @@ const App = () => {
 
   },[busqueda])
 
+  const paginaAnterior = () => {
+    const newPage = paginaactual - 1
+    if(newPage === 0) return
+    setPaginaActual(newPage);
+  }
+
+  const paginaSiguiente = () => {
+    const newPage = paginaactual + 1
+    if (newPage > totalpaginas) return    
+    setPaginaActual(newPage)
+  }
+
   return (
     <div className='container'>
       <div className="jumbotron">
@@ -45,6 +57,21 @@ const App = () => {
           <ListaImagenes
             imagenes={imagenes}
           />
+          <button
+            type='button'
+            className='bbtn btn-info mr-1'
+            onClick={paginaAnterior}
+          >
+            &laquo; Anterior
+          </button>
+
+          <button
+            type='button'
+            className='bbtn btn-info'
+            onClick={paginaSiguiente}
+          >
+            Siguiente &raquo;
+          </button>
       </div>
     </div>
   );
