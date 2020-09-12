@@ -6,6 +6,8 @@ const App = () => {
 
   const [busqueda, setBusqueda] = useState('')
   const [imagenes, setImagenes] = useState([])
+  const [paginaactual, setPaginaActual] = useState(1)
+  const [totalpaginas, setTotalPaginas] = useState(1)
 
   useEffect(() => {
     
@@ -13,13 +15,16 @@ const App = () => {
 
       if(busqueda === '') return
 
-      const imagesPorPagina = 20
+      const imagesPorPagina = 30
       const key = '18275283-6af94f0e1d9358cfaed0f745c'
       const url = `https://pixabay.com/api/?key=${key}&q=${busqueda}&per_page=${imagesPorPagina}`
       const respuesta = await fetch(url)
       const api = await respuesta.json()
 
       setImagenes(api.hits)
+
+      const calcularTotalPaginas = Math.ceil(api.totalHits / imagesPorPagina)
+      setTotalPaginas(calcularTotalPaginas)
 
     }
     sonsultarAPI()
