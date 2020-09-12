@@ -1,7 +1,7 @@
 import React from 'react';
 import Formulario from './components/Formulario'
 
-function App() {
+const App = () => {
   return (
     <div className='container'>
       <div className="jumbotron">
